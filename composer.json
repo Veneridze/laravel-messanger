@@ -1,5 +1,5 @@
 {
-    "name": "veneridze/laravel-quiz",
+    "name": "veneridze/laravel-messanger",
     "description": "Messanger system with chats and media",
     "require": {
         "php": ">=8.2",
