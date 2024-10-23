@@ -1,0 +1,33 @@
+<?php
+
+use App\Models\User;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Veneridze\LaravelPermission\Models\Role;
+use Illuminate\Database\Migrations\Migration;
+use Veneridze\LaraverMessanger\Models\Chat;
+use Veneridze\LaraverMessanger\Models\ChatUser;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('messages', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(ChatUser::class);
+            $table->string('text')->nullable();
+            $table->timestamp('read_at')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('quizes');
+    }
+};
