@@ -10,6 +10,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ChatUser extends Model {
     use SoftDeletes;
+    protected $appends = [
+        'unreadMessagesCount'
+    ];
+
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
@@ -28,6 +32,12 @@ class ChatUser extends Model {
      * @return \Veneridze\LaraverMessanger\Models\Message
      */
     public function sendMessage(string $text, array $media): Message {
-        
+        return $this->messages()->create([
+            'text' => $text
+        ]);
+    }
+
+    public function getUnreadMessagesCountAttribute() {
+        return $this->messages()->whereNull('readed_at')->count();
     }
 }
