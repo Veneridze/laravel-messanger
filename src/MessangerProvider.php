@@ -13,6 +13,11 @@ class MessangerProvider extends PackageServiceProvider
         $package
             ->name('laravel-messanger')
             //->hasConfigFile()
+            ->hasMigrations([
+                'create_chat_users_table',
+                'create_chats_table',
+                'create_messages_table'
+            ])
             ->publishesServiceProvider('MessangerProvider')
             ->hasInstallCommand(function(InstallCommand $command) {
                 $command
