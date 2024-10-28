@@ -15,7 +15,7 @@ class Message extends Model implements HasMedia {
     use InteractsWithMedia;
     
     protected $casts = [
-        'readed_at' => 'datatime'
+        'readed_at' => 'datetime'
     ];
     protected $guarded = [];
     public function user(): MorphTo {
