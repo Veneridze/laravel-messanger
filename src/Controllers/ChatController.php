@@ -12,10 +12,12 @@ class ChatController {
     }
 
     public function store(Chat $chat, Request $request) {
-        $chat->messages()->create([
-            'user_model' => User::class,
+        $message = $chat->messages()->create([
+            'user_type' => User::class,
             'user_id' => Auth::id(),
             'text' => 'test123'
         ]);
+
+        return $message;
     }
 }
