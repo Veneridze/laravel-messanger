@@ -7,7 +7,7 @@ use Veneridze\LaravelMessanger\Models\Chat;
 use App\Models\User;
 
 class ChatController {
-    public function index(Chat $chat) {
+    public function show(Chat $chat) {
         return $chat->messages;
     }
 
