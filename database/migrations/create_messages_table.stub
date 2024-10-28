@@ -1,12 +1,9 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use Veneridze\LaravelPermission\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Veneridze\LaravelMessanger\Models\Chat;
-use Veneridze\LaravelMessanger\Models\ChatUser;
 
 return new class extends Migration {
     /**
@@ -16,7 +13,8 @@ return new class extends Migration {
     {
         Schema::table('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(ChatUser::class);
+            $table->morphs('user')->nullable();
+            $table->foreignIdFor(Chat::class);
             $table->string('text')->nullable();
             $table->timestamp('readed_at')->nullable();
             $table->timestamps();
