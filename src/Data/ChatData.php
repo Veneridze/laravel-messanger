@@ -6,7 +6,7 @@ use App\Models\User;
 use Veneridze\LaravelForms\Form;
 use Illuminate\Support\Facades\Auth;
 use Veneridze\LaravelForms\RelationData;
-use Veneridze\LaraverMessanger\Models\Chat;
+use Veneridze\LaravelMessanger\Models\Chat;
 use Veneridze\ModelTypes\TypeCollection;
 use Spatie\LaravelData\Attributes\Hidden;
 use Veneridze\LaravelForms\Elements\Date;

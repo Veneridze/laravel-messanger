@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Veneridze\LaravelPermission\Models\Role;
 use Illuminate\Database\Migrations\Migration;
-use Veneridze\LaraverMessanger\Models\Chat;
+use Veneridze\LaravelMessanger\Models\Chat;
 
 return new class extends Migration {
     /**

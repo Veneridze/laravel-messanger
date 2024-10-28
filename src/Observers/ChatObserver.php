@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use Veneridze\LaraverMessanger\Models\Chat;
+use Veneridze\LaravelMessanger\Models\Chat;
 use App\Notifications\SignDocumentPublishedNotification;
 
 class ChatObserever

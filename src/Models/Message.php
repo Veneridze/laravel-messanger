@@ -1,5 +1,5 @@
 <?php
-namespace Veneridze\LaraverMessanger\Models;
+namespace Veneridze\LaravelMessanger\Models;
 
 use App\Models\User;
 use Spatie\MediaLibrary\HasMedia;

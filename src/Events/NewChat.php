@@ -5,9 +5,9 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Events\Dispatchable;
-use Veneridze\LaraverMessanger\Models\Message;
+use Veneridze\LaravelMessanger\Models\Message;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Veneridze\LaraverMessanger\Models\Chat;
+use Veneridze\LaravelMessanger\Models\Chat;
 
  
 class NewChat implements ShouldQueue

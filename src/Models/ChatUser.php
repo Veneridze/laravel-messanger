@@ -1,5 +1,5 @@
 <?php
-namespace Veneridze\LaraverMessanger\Models;
+namespace Veneridze\LaravelMessanger\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +29,7 @@ class ChatUser extends Model {
      * Summary of sendMessage
      * @param string $text
      * @param array<Media> $media
-     * @return \Veneridze\LaraverMessanger\Models\Message
+     * @return \Veneridze\LaravelMessanger\Models\Message
      */
     public function sendMessage(string $text, array $media): Message {
         return $this->messages()->create([
