@@ -28,7 +28,7 @@ use Spatie\LaravelData\Attributes\Validation\File as ValidationFile;
 class MessageData extends Form
 {
     #[Computed]
-    readonly RelationData $user;
+    readonly array $user;
 
     #[Computed]
     readonly array $attachments;
@@ -36,10 +36,17 @@ class MessageData extends Form
         #[Prohibited]
         public ?int $id,
         public ?string $text,
+        public ?string $user_type,
+        public ?string $created_at,
+        public ?string $readed_at,
     ) {
         if($this->id) {
             $item = Message::findOrFail($this->id);
-            $this->user = RelationData::from($item->user);
+            $this->user = [
+                'id' => $item->user->id,
+                'name' => $item->user->name,
+                'type' =>  strtolower((new \ReflectionClass($item->user_type))->getShortName())
+            ];
         }
     }
 }
