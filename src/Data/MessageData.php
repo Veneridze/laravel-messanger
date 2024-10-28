@@ -1,6 +1,6 @@
 <?php
+namespace Veneridze\LaravelMessanger\Data;
 
-namespace App\Data;
 
 use App\Models\User;
 use Veneridze\LaravelForms\Form;

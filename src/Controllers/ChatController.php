@@ -1,11 +1,11 @@
 <?php
 namespace Veneridze\LaravelMessanger\Controllers;
 
-use App\Data\MessageData;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Veneridze\LaravelMessanger\Models\Chat;
-use App\Models\User;
+use Veneridze\LaravelMessanger\Data\MessageData;
 
 class ChatController {
     public function show(Chat $chat) {
