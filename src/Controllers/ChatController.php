@@ -11,7 +11,7 @@ class ChatController {
         return $chat->messages;
     }
 
-    public function store(Chat $chat, Request $request) {
+    public function update(Chat $chat, Request $request) {
         $message = $chat->messages()->create([
             'user_type' => User::class,
             'user_id' => Auth::id(),
