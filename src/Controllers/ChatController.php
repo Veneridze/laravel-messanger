@@ -15,7 +15,7 @@ class ChatController {
         $message = $chat->messages()->create([
             'user_type' => User::class,
             'user_id' => Auth::id(),
-            'text' => 'test123'
+            'text' => $request->input('text')
         ]);
 
         return $message;
