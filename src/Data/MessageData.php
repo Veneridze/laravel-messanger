@@ -29,6 +29,9 @@ class MessageData extends Form
 {
     #[Computed]
     readonly RelationData $user;
+
+    #[Computed]
+    readonly array $attachments;
     public function __construct(
         #[Prohibited]
         public ?int $id,
