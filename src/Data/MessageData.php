@@ -45,6 +45,7 @@ class MessageData extends Form
             $this->user = [
                 'id' => $item->user->id,
                 'name' => $item->user->name,
+                'readed_at' => $item->readed_at,
                 'type' =>  strtolower((new \ReflectionClass($item->user_type))->getShortName())
             ];
         }
