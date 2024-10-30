@@ -42,12 +42,14 @@ class MessageData extends Form
     ) {
         if($this->id) {
             $item = Message::findOrFail($this->id);
-            $this->user = [
-                'id' => $item->user->id,
-                'name' => $item->user->name,
-                'readed_at' => $item->readed_at,
-                'type' =>  strtolower((new \ReflectionClass($item->user_type))->getShortName())
-            ];
+            if($item->user_id) {
+                $this->user = [
+                    'id' => $item->user->id,
+                    'name' => $item->user->name,
+                    'readed_at' => $item->readed_at,
+                    'type' =>  strtolower((new \ReflectionClass($item->user_type))->getShortName())
+                ];
+            }
         }
     }
 }
