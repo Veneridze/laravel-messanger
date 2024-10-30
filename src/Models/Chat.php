@@ -20,7 +20,7 @@ class Chat extends Model {
     public function sendNotification(string $text): void {
         $this->messages()->create([
             'chat_id' => $this->id,
-            'text' => 'text'
+            'text' => $text
         ]);
     }
 }
