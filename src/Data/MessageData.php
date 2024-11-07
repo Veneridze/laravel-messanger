@@ -12,6 +12,8 @@ class MessageData extends Form
 {
     #[Computed]
     readonly array $user;
+    #[Computed]
+    public array $media;
 
     #[Computed]
     readonly array $attachments;
@@ -25,11 +27,10 @@ class MessageData extends Form
     ) {
         if($this->id) {
             $item = Message::findOrFail($this->id);
-            $media = $this->getMedia('*');
-            $mediaResult = [];
+            $media = $item->getMedia('*');
             foreach ($media as $key => $med) {
                 $medObject = Media::where('uuid', $med->uuid)->firstOrFail();
-                $mediaResult[] = [
+                $this->media[] = [
                     'name' => $med->file_name,
                     'uuid' => $med->uuid,
                     'collection' => $medObject->collection_name
@@ -40,7 +41,6 @@ class MessageData extends Form
                     'id' => $item->user->id,
                     'name' => $item->user->name,
                     'readed_at' => $item->readed_at,
-                    'media' => $mediaResult,
                     'type' =>  strtolower((new \ReflectionClass($item->user_type))->getShortName())
                 ];
             }
