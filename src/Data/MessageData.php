@@ -2,28 +2,11 @@
 namespace Veneridze\LaravelMessanger\Data;
 
 
-use App\Models\User;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Veneridze\LaravelForms\Form;
-use Illuminate\Support\Facades\Auth;
-use Veneridze\LaravelForms\RelationData;
-use Veneridze\LaravelMessanger\Models\Chat;
-use Veneridze\LaravelMessanger\Models\ChatUser;
 use Veneridze\LaravelMessanger\Models\Message;
-use Veneridze\ModelTypes\TypeCollection;
-use Spatie\LaravelData\Attributes\Hidden;
-use Veneridze\LaravelForms\Elements\Date;
-use Veneridze\LaravelForms\Elements\File;
-use Veneridze\LaravelForms\Elements\Text;
 use Spatie\LaravelData\Attributes\Computed;
-use Veneridze\LaravelForms\Elements\Option;
-use Veneridze\LaravelForms\Elements\Select;
-use Veneridze\LaravelForms\Elements\MultipleSelect;
-use Spatie\LaravelData\Attributes\Validation\Nullable;
-use Spatie\LaravelData\Attributes\Validation\Required;
 use Spatie\LaravelData\Attributes\Validation\Prohibited;
-use Spatie\LaravelData\Support\Validation\ValidationContext;
-use Spatie\LaravelData\Attributes\Validation\Date as ValidationDate;
-use Spatie\LaravelData\Attributes\Validation\File as ValidationFile;
 
 class MessageData extends Form
 {
@@ -42,11 +25,22 @@ class MessageData extends Form
     ) {
         if($this->id) {
             $item = Message::findOrFail($this->id);
+            $media = $this->getMedia('*');
+            $mediaResult = [];
+            foreach ($media as $key => $med) {
+                $medObject = Media::where('uuid', $med->uuid)->firstOrFail();
+                $mediaResult[] = [
+                    'name' => $med->file_name,
+                    'uuid' => $med->uuid,
+                    'collection' => $medObject->collection_name
+                ];
+            }
             if($item->user_id) {
                 $this->user = [
                     'id' => $item->user->id,
                     'name' => $item->user->name,
                     'readed_at' => $item->readed_at,
+                    'media' => $mediaResult,
                     'type' =>  strtolower((new \ReflectionClass($item->user_type))->getShortName())
                 ];
             }
