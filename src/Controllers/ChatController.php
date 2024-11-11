@@ -13,6 +13,10 @@ class ChatController {
     }
 
     public function update(Chat $chat, Request $request) {
+        $request->validate([
+            "text" => ["required","string"],
+            'files' => ['nullable', 'array']
+        ]);
         $message = $chat->messages()->create([
             'user_type' => User::class,
             'user_id' => Auth::id(),
