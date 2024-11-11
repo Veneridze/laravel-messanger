@@ -2,6 +2,7 @@
 namespace Veneridze\LaravelMessanger\Controllers;
 
 use App\Models\User;
+use App\Observers\MessageObserver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Veneridze\LaravelMessanger\Models\Chat;
@@ -17,16 +18,19 @@ class ChatController {
             "text" => ["required","string"],
             'files' => ['nullable', 'array']
         ]);
-        $message = $chat->messages()->create([
+        $message = $chat->messages()->createQuietly([
             'user_type' => User::class,
             'user_id' => Auth::id(),
             'text' => $request->input('text')
         ]);
-        if($request->input('files')) {
-            foreach ($request->input('files') as $file) {
-                $message->addMedia($file)->toMediaCollection();   
+        //throw new \Exception($request->has('files'));
+        if($request->has('files')) {
+            //throw new \Exception(count($request->file('files')));
+            foreach ($request->file('files') as $file) {
+                $message->addMedia($file)->toMediaCollection('attachments');   
             }
         }
+        app(MessageObserver::class)->created($message);
         return MessageData::from($message);
     }
 }
