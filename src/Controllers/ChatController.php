@@ -22,7 +22,11 @@ class ChatController {
             'user_id' => Auth::id(),
             'text' => $request->input('text')
         ]);
-
+        if($request->input('files')) {
+            foreach ($request->input('files') as $file) {
+                $message->addMedia($file)->toMediaCollection();   
+            }
+        }
         return MessageData::from($message);
     }
 }
